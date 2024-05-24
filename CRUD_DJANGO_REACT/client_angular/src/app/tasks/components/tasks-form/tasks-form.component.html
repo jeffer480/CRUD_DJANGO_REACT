@@ -1,0 +1,24 @@
+<div class="container py-4">
+    <h3>{{ isUpdateMode ? 'Actualizar tarea' : 'Crear nueva tarea' }}</h3>
+
+    <form (ngSubmit)="submitForm()">
+        <div class="my-5">
+            <p-floatLabel>
+                <input type="text" pInputText class="w-full" id="titleInput" name="titleInput" [(ngModel)]="task.title">
+                <label for="titleInput">Título de la tarea</label>
+            </p-floatLabel>
+        </div>
+        <div class="mt-5 mb-3">
+            <p-floatLabel>
+                <textarea class="w-full" id="descriptionInput" name="descriptionInput" rows="3" [(ngModel)]="task.description" pInputTextarea></textarea>
+                <label for="descriptionInput">Descripción de la tarea</label>
+            </p-floatLabel>
+        </div>
+        <div class="mb-3">
+            <p-checkbox inputId="doneInput" name="doneInput" [(ngModel)]="task.done" [binary]="true"></p-checkbox>
+            <label for="doneInput">Creado</label>
+        </div>
+        <button pButton type="submit" icon="pi pi-check" label="{{ isUpdateMode ? 'Actualizar tarea' : 'Crear tarea' }}"></button>
+    </form>
+    
+</div>

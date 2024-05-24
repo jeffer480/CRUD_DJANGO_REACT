@@ -1,0 +1,48 @@
+
+<div class="container py-4">
+    <h3>Servicios list-tasks</h3>
+    <div *ngIf="tasks && tasks.length > 0">
+
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-3" *ngFor="let task of tasks">
+                <p-card header="{{ task.title }}" subheader="Texto estatico">
+                    <ng-template pTemplate="header">
+                        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
+                    </ng-template>
+                    <p>{{ task.description }}</p>
+                    <p class="font-italic m-0">{{ task.done ? 'Completada' : 'Pendiente' }}</p>
+                    <ng-template pTemplate="footer">
+                        <div class="flex gap-3">
+                            <p-button label="Editar" icon="pi pi-file-edit" size="small" [routerLink]="['/edit', task.id]"></p-button>
+                            <p-button label="Eliminar" icon="pi pi-trash" size="small" severity="danger" (click)="deleteTask(task.id!)" />
+                        </div>
+                    </ng-template>
+                </p-card>
+            </div>
+        </div>
+
+        <!-- <div class="row">
+            <div class="col-md-4 mb-4" *ngFor="let task of tasks">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.description }}</h6>
+                        <p class="card-text fst-italic">{{ task.done ? 'Completada' : 'Pendiente' }}</p>
+                        <p class="card-text fst-italic" *ngIf="task.done; else notDone">Creada</p>
+                        <ng-template #notDone><p class="card-text fst-italic">No creada</p></ng-template>
+                        <a href="tasks/edit/{{ task.id }}" class="btn btn-primary me-2">Editar</a>
+                        <button class="btn btn-danger" (click)="deleteTask(task.id!)">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div *ngIf="tasks && tasks.length === 0">
+        <p>No tasks found.</p>
+    </div>
+
+    <div *ngIf="!tasks">
+        <p>Loading...</p>
+    </div>
+</div>
